@@ -1,0 +1,6 @@
+As constantes abaixo estao sempre disponiveis como parte do núcleo do PHP
+
+1 - E_ERROR (interno): Erros fatais em tempo de execucao. Indicam erros dos quais nao é possivel recuperar, como um problema de alocacao de memória. A execucao do script é interrompida.
+2 - E_WARNING (interno): Avisos em tempo de execucao (erros nao fatais). A execucao do script nao é interrompida.
+3 - E_PARSE (interno): Erros de análise em tempo de compilacao. Erros de análise só devem ser gerados pelo analisador.
+4 - E_NOTICE (interno): Avisos em tempo de execucao. Indica que o script encontrou algo que pode indicar um erro, mas que também pode acontecer durante a execucao normal de um script.

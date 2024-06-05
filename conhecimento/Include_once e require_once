@@ -1,0 +1,5 @@
+As declaracoes include_once e require_once incluem e avaliam o arquivo informado durante a execucao do script da mesma forma que include e require.
+, mas com uma unica diferenca: se o código do arquivo ja foi incluído, nao o fara novamente. Como o nome sugere, o arquivo será incluido somente uma vez.
+
+Essas instrucoes podem ser utilzadas nos casos em que o mesmo arquivo pode ser incluído e avaliado mais de uma vez durante uma execucao de um script em particular,
+neste caso, ajudará a evitar problemas como redefinicao de funcoes, reatribuicao de valores de variaveis etc.
