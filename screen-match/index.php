@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/funcoes.php"; //__DIR__ é como se fosse uma abreviacao para fornecer o caminho absoluto para o arquivo
+require __DIR__ . "/src/funcoes.php"; //__DIR__ é como se fosse uma abreviacao para fornecer o caminho absoluto para o arquivo
 
 echo 'Bem vindo ao screen match!', PHP_EOL;
 
@@ -36,12 +36,12 @@ $genero = match ($nomeFilme) {
 
 echo "O genero do filme é : $genero", PHP_EOL;
 
-$filme = [
-    "nome" => "Thor: Ragnarok",
-    "Ano" => 2021,
-    "nota" => 7.8,
-    "genero" => "super-herói"
-];
+$filme = criaFilme(
+    nome: "Thor: Ragnarok", 
+    anoLancamento: 2021, 
+    nota: 7.8, 
+    genero: "super=herói"
+); //Parametros nomeados, isso é util pois sem a nomeacao de parametros, alguem pode enviar os parametros fora de ordem, causando erro na aplicacao
 
 var_dump($notas); //acessa o array notas e mostras seus valores e seus tipos
 sort($notas); //ordena o array notas em ordem crescente
@@ -55,4 +55,9 @@ var_dump($posicaoDoisPontos);// mostra o valor armazenado na variavel $posicaoDo
 
 var_dump(substr($filme['nome'], 0, $posicaoDoisPontos)); //mostra uma substring a partir da funcao substr, essa funcao espera pelos parametros da string a ser acessada, aonde ela comeca e aonde ela termina
 
+echo json_encode($filme); //Transforma uma array associativo em JSON
+var_dump( json_decode('{"nome":"Thor: Ragnarok","Ano":2021,"nota":7.8,"genero":"super-her\u00f3i"}', true)); //Transforma um JSON em array associativo
+
+$filmeComoStringJson = json_encode($filme);
+file_put_contents(__DIR__ . '/filme.json', $filmeComoStringJson);
 
