@@ -1,0 +1,29 @@
+Programacao procedural: nós temos funcoes que recebem os dados que elas manipularao por parametro, 
+mas esses dados podem ser manipulados em qualquer lugar. 
+Essa separacao facilita a tomada de más decisoes e dificulta a manutencao do código em grandes projetos.
+
+Orientacao a Objetos:
+A ideia da Orientacao a objetos é organizar nossos códigos nao mais em funcoes, mas sim em tipos que fazem
+sentido em nosso sistema através da definicao de classes e instancias de objetos;
+
+Pilares da Orientacao a Objetos
+
+1- Abstracao: Abstracao é focar naquilo que será efetivamente útil e necessario para desenvolver 
+o sistema onde trabalhamos para evitar desperdício e aumento de complexidade.
+
+2- Encapsulamento: O encapsulamento ajuda a garantir que os nossos objetos se mantenham em um estado consistente, 
+e também facilita o uso da nossa classe por outros desenvolvedores. Quando criamos um método que nos dá a nota média do filme,
+por exemplo, garantimos que os demais desenvolvedores do projeto nao precisao se preocupar em como calcular essa informacao. 
+E se for necessario alterar esse cálculo no futuro, temos a certeza de que só precisaremos alterar em um único lugar.
+
+A palavra reservada this indica o objeto utilizado para executar a funcao, ela contem a referencia para o objeto que gerou a execucao do método.
+
+O modificador private é usado para controlar o acesso aos membros de uma classe.
+
+Método Construtor: é um método que é chamado automaticamente sempre que um objeto é instanciado. O método construtor é também conhecido com um dos métodos mágicos do PHP
+
+Métodos mágicos: sao métodos que podemos definir em nosso código e sao acionados automaticamente pelo PHP em situacoes especificas. 
+
+Enum: é um tipo que permite enumerar um conjunto de valores possíveis.
+
+Static: As propriedades estáticas são variáveis que pertencem à classe e não a uma instância específica da classe. Elas podem ser acessadas diretamente através da classe.
