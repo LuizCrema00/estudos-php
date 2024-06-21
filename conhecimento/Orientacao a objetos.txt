@@ -27,3 +27,16 @@ Métodos mágicos: sao métodos que podemos definir em nosso código e sao acion
 Enum: é um tipo que permite enumerar um conjunto de valores possíveis.
 
 Static: As propriedades estáticas são variáveis que pertencem à classe e não a uma instância específica da classe. Elas podem ser acessadas diretamente através da classe.
+
+3- Heranca: Outro pilar da Orientacao a objetos é a heranca, uma das formas de reutilizar código é fazendo uma classe estender outra, ou seja, herdar tudo que uma classe base tem
+e adicionar comportamentos especificos.
+
+Protected: Ao usar Heranca no PHP, temos a possibilidade de utilizar o modificador de acesso protected, que permite que os atributos de uma classe sejam acessados por suas subclasses, ou seja
+classes que a estendam. O modificador protected é util em situacoes em que uma classe precisa permitir que suas subclasses acessem diretamente seus atributos, sem a necessidade de restringir
+o acesso apenas pelos métodos getters e setters.
+
+4- Polimorfismo: O Polimorfismo se refere a capacidade de objetos de diferentes classes serem tratados de maneira uniforme através de uma interface comum.
+Isso permite que diferentes tipos de objetos respondam de maneira diferente a uma mesma mensagem ou método, de acordo com sua implementacao especifica.
+No exemplo da aula, tanto objetos do tipo Serie quanto objetos do tipo Filme podem ser tratados de maneira uniforme como um Titulo, que prove uma interface comum
+como os métodos media() e duracaoEmMinutos(). Eles puderam responder de maneira diferente a mesma mensagem (a chamada do método duracaoEmMinutos) gracas a sobreescrita do método.
+
