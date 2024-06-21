@@ -4,12 +4,10 @@ class Conta
 {
     public function __construct(
         private int $saldoEmCentavos,
-        private string $nomeTitular,
-        private string $numeroConta
+        public readonly string $nomeTitular,
+        public readonly string $numeroConta
     ){
         $this->saldoEmCentavos = $saldoEmCentavos;
-        $this->nomeTitular = $nomeTitular;
-        $this->numeroConta = $numeroConta;
     }
 
     public function saque(int $saque)
@@ -32,23 +30,4 @@ class Conta
         return "Depósito realizado com sucesso";
     }
 
-    public function setNomeTitular(string $nomeTitular): void
-    {
-        $this->nomeTitular = $nomeTitular;
-    }
-
-    public function getNomeTitular(): string
-    {
-        return $this->nomeTitular;
-    }
-
-    public function setNumeroConta(int $numeroConta): void
-    {
-        $this->numeroConta = $numeroConta;
-    }
-
-    public function getNumeroConta(): string
-    {
-        return $this->numeroConta;
-    }
 }

@@ -22,3 +22,5 @@ $mensagemSaque = $conta1->saque(1500);
 echo $mensagemSaque . PHP_EOL; // Output: Saque realizado com sucesso!
 
 var_dump($conta1); // Verificar o saldo atualizado
+
+echo $conta1->nomeTitular;
