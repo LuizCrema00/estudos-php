@@ -1,14 +1,14 @@
 <?php
 
-
-class Filme extends Titulo
+class Serie extends Titulo
 {
-
     public function __construct(
         string $nome,
         int $anoLancamento,
         Genero $genero,
-        public readonly int $duracaoEmMinutos
+        public int $temporadas,
+        public int $episodiosPorTemporada,
+        public int $minutosPorEpisodio
     )
     {
         parent::__construct($nome, $anoLancamento, $genero);
@@ -16,6 +16,7 @@ class Filme extends Titulo
 
     public function duracaoEmMinutos(): int
     {
-        return $this->duracaoEmMinutos;
+        return $this->temporadas * $this->episodiosPorTemporada * $this->minutosPorEpisodio;
     }
+
 }
