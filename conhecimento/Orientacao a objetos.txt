@@ -40,3 +40,15 @@ Isso permite que diferentes tipos de objetos respondam de maneira diferente a um
 No exemplo da aula, tanto objetos do tipo Serie quanto objetos do tipo Filme podem ser tratados de maneira uniforme como um Titulo, que prove uma interface comum
 como os métodos media() e duracaoEmMinutos(). Eles puderam responder de maneira diferente a mesma mensagem (a chamada do método duracaoEmMinutos) gracas a sobreescrita do método.
 
+
+Classes abstratas: Classes e métodos abstratos sao conceitos fundamentais na programacao orientada a objetos (OOP) 
+que ajudam a definir uma estrtura comum para uma família de classes e garantir que certas funcionalidades sejam implementadas nas classes derivadas
+
+Uma classe abstrata é uma classe que nao pode ser instanciada diretamente. Seu propósito é servir como uma classe base para outras classes que derivam dela. Classes abstratas podem conter
+métodos concretos (com implementacao) e métodos abstratos (sem implementacao). Quando uma classe abstrata contém métodos abstratos, as classes derivadas devem fornecer as implementacoes desses métodos.
+
+Um método abstrato é um método declarado em uma classe abstrata que nao possui implementacao na própria classe abstrata. Em vez disso, ele apenas define a assinatura do método.
+As classes derivadas sao obrigadas a implementar esses métodos.
+
+
+
