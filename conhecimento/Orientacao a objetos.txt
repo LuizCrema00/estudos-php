@@ -71,6 +71,8 @@ da heranca única através do uso de interfaces e traits.
 Interfaces definem um contrato que uma classe deve serguir. A interface declara métodos que devem ser implementados por qualquer classe que "implementa" a interface.
 Interfaces permitem que classes diferentes implementem a mesma colecao de métodos, garantindo que elas sigam um padrao específico.
 
+traits: PHP tambem oferece traits como uma forma de reutilizar métodos em várias classes. Traits permitem que voce defina métodos que podem ser usados em várias classes, sem as complicacoes
+da heranca multipla.
 
 
 
