@@ -50,5 +50,27 @@ métodos concretos (com implementacao) e métodos abstratos (sem implementacao).
 Um método abstrato é um método declarado em uma classe abstrata que nao possui implementacao na própria classe abstrata. Em vez disso, ele apenas define a assinatura do método.
 As classes derivadas sao obrigadas a implementar esses métodos.
 
+Heranca Multipla: é o conceito de uma classe herdar mais de uma classe ao mesmo tempo. Em linguagens de programacao que suportam heranca multipla, uma classe pode ter vários superclasses,
+e portanto, herdar propriedades e métodos de todas elas. No entanto, a heranca multipla pode introduzir complexidade e ambiguidades, especialmente quando as classes superclasses tem métodos
+ou propriedades com os mesmos nomes. Devido a esses problemas, muitas linguagens de programacao, incluindo PHP, nao suportam heranca múltipla diretamente.
+
+O problema do diamante: O problema do diamante é uma complicacao que pode surgir na heranca múltipla quando duas classes base A e B herdam de uma classe comum C, e uma classe D herda de
+A e B. A estrutura resultante tem a forma de um diamante.
+    C
+   / \
+  A   B
+   \ /
+    D
+
+O problema ocorre quando a classe D tenta acessar um método ou propriedade definida na classe C, através de A e B. Pode haver ambiguidade se C,A e B redefinirem métodos ou propriedades de maneira diferente.
+Isso pode levar a questoes sobre qual versao do método ou propriedade deve ser usada.
+
+Interfaces em PHP: PHP nao suporta heranca múltipla diretamente para evitar problemas como o problema do diamante. No entanto, PHP oferece uma menira de contronar algumas das limitacoes 
+da heranca única através do uso de interfaces e traits.
+
+Interfaces definem um contrato que uma classe deve serguir. A interface declara métodos que devem ser implementados por qualquer classe que "implementa" a interface.
+Interfaces permitem que classes diferentes implementem a mesma colecao de métodos, garantindo que elas sigam um padrao específico.
+
+
 
 
