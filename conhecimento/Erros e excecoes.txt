@@ -1,0 +1,7 @@
+O PHP traz nativamente diversos tipos de erros e excecoes diferentes. Na documentacao oficial voce pode conferir a lista de excecoes e excecoes pré definidas.
+Repare que todas as classes de erros e excecoes que o PHP traz herdam de ERROR ou de Exception e que classses implementam Throwable. Basicamente, a interface
+Throwable representa tudo que nós podemos "pegar" no bloco catch, sendo assim, um bloco catch (Throwable) é o mais generico possivel.
+
+A diferenca entre Error e Exception (e suas classes derivadas) é que o primeiro é lancado quando acontece um cenário inesperado dentro do código do PHP, ou seja, em funcoes
+e operacoes internas. Ao executar uma divisao por 0, por exemplo, o PHP lanca um erro que estende Error. Já a classe Exception é utilizada como base para os tipos que podem
+ser lancados por código escrito por nós, ou seja, nós podemos executar throw new Exception(), em que podemos trocar Exception por qualquer tipo que a estenda.
