@@ -1,0 +1,8 @@
+É muito útil e uma boa prática fazermos uso de namespaces para separar as nossas classes em nossa aplicacao. Para fazer bom uso deste recurso
+devemos entender alguns detalhes. Quando definimos uma classe sem informar o seu namespace, ela é criada no namespace padrao do Padrao do PHP.
+Este namespace tem um "nome vazio", ou seja, uma classe conta sem namespace tem como seu "nome completo" \Conta.
+
+Se em uma classe com namespace definido precisarmos acessar classes de outro namespace, precisamos adicionar o use ou informar seu nome completo(namespace + nome da classe).
+
+Estando em uma classe chamada Alura\Banco\CPF, precisamos informar o nome completo da classe, ou utilizar use Alura\Banco\CPF no ínicio do arquivo, o que permite que no restante
+do arquivo utilizemos apenas CPF como nome.
