@@ -1,0 +1,27 @@
+As PSRs (PHP Standard Recommendations) sao um conjunto de recomendacoes e padroes definidos pelo PHP-FIG (PHP Framework Interoperability Group).
+Eles visam promover a interoperabilidade entre componentes de software escritos em PHP e estabelecer diretrizes comuns para o desenvolvimento
+de bibliotecas e frameworks PHP.
+
+Exemplos de PSRs
+
+PSR-1: Basic Coding Standard: Estabelece regras básicas de codificacao para garantir um estilo de código consistente.
+Principais pontos: 
+ - Código deve usar apenas '<?php' e '<?=' tags.
+ - Arquivos devem usar UTF-8 sem BOM.
+ - Cada arquivo deve declarar novas classes, funcoes, constantes ou fazer includes.
+ - Nomes de classes devem ser em 'Studly Caps'
+ - Nomes de métodos devem ser em 'camelCase'
+
+ PSR-2 Coding Style Guide: Define um estilo de codificacao detalhado para assegurar que o código é legivel e consistente.
+ Principais pontos:
+ - Indetacao com 4 espacos, sem tabs.
+ - Linhas nao devem ter mais de 120 caracteres.
+ - As chaves ('{}') devem ser colocadas em novas linhas para classes e métodos.
+ - Espaco após palavras-chave de controle (if, else, while, etc).
+ - O uso de uma linha em branco entre métodos.
+
+ PSR-4 Autoloading Standard: Especifica um padrao para autoloading de classes a partir de arquivos.
+ - Define uma especificacao para mapear namespaces e classes para diretórios e arquivos.
+ - Utiliza o namespace para organizar as classes e a estrutura de diretórios.
+
+ Essas sao algumas PSRs, existem muitas outras.
