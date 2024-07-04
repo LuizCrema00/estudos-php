@@ -1,0 +1,41 @@
+O PDO (PHP Data Objects) é um extensao do PHP que fornece uma interface consistente para acessar diferentes bancos de dados.
+Com PDO, podemos usar o mesmo conjunto de funcoes para interagir com diversos sistemas de gerenciamento de banco de dados (SGDBs)
+Como mysql ,postgresql, sqlite, Oracle, entre outros. 
+
+Conectando ao banco de dados:
+Para usar PDO, devemos primeiro criar uma instancia da classe 'PDO', fornecendo as informacoes de conexao ao banco de dados.
+
+<?php
+
+$dsn = 'mysql:host=localhost;dbname=nome_do_banco';
+$usuario = 'seu_usuario';
+$senha = 'sua_senha';
+
+try {
+    $pdo = new PDO($dsn, $usuario, $senha);
+    // Configura o PDO para lançar exceções em caso de erro
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Conexão bem-sucedida!";
+} catch (PDOException $e) {
+    echo "Erro ao conectar ao banco de dados: " . $e->getMessage();
+}
+
+Executando consultas simples:
+Podemos executar consultas diretamente usando o método 'query' para SELECTs ou 'exec' para INSERTs, UPDATEs, DELETEs.
+<?php
+
+// Consulta simples
+$sql = 'SELECT * FROM tabela';
+foreach ($pdo->query($sql) as $row) {
+    print_r($row);
+}
+
+// Execução de comando
+$sql = "INSERT INTO tabela (coluna1, coluna2) VALUES ('valor1', 'valor2')";
+$pdo->exec($sql);
+
+O método 'exec' é usado para executar instrucoes SQL que nao retornam um conjunto de resultados. Eles retornam o número de linhas afetadas pela instrucao SQL.
+O método 'query' é usado para executar instrucoes SQL que retornam um conjunto de resultados. Ele retorna um objeto 'PDOStatement', que pode ser usado para iterar sobre os resultados.
+O método 'fetchAll' é usado para recuperar todos os resultados de um objeto 'PDOStatement' em um array. Ele pode ser usado para obter os dados em diferentes formatos, como arrays associativos
+arrays numéricos, ou objetos.
+
