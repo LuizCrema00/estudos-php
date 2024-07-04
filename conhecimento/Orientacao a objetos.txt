@@ -65,7 +65,7 @@ A e B. A estrutura resultante tem a forma de um diamante.
 O problema ocorre quando a classe D tenta acessar um método ou propriedade definida na classe C, através de A e B. Pode haver ambiguidade se C,A e B redefinirem métodos ou propriedades de maneira diferente.
 Isso pode levar a questoes sobre qual versao do método ou propriedade deve ser usada.
 
-Interfaces em PHP: PHP nao suporta heranca múltipla diretamente para evitar problemas como o problema do diamante. No entanto, PHP oferece uma menira de contronar algumas das limitacoes 
+Interfaces em PHP: PHP nao suporta heranca múltipla diretamente para evitar problemas como o problema do diamante. No entanto, PHP oferece uma menira de contornar algumas das limitacoes 
 da heranca única através do uso de interfaces e traits.
 
 Interfaces definem um contrato que uma classe deve serguir. A interface declara métodos que devem ser implementados por qualquer classe que "implementa" a interface.
