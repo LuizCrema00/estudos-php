@@ -7,9 +7,9 @@ $caminhoBanco = __DIR__ . '/banco.sqlite'; //caminho absoluto
 $pdo = new PDO('sqlite:' . $caminhoBanco); //conexao com o banco de dados sqlite
 
 $statement = $pdo->query('SELECT * FROM students;');
-$studentList = $statement->fetchAll(PDO::FETCH_ASSOC);
+$studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-foreach($studentList as $studentData) {
+foreach($studentDataList as $studentData) {
     $studentList[] = new Student(
         $studentData['id'], 
         $studentData['name'], 
@@ -17,4 +17,4 @@ foreach($studentList as $studentData) {
     );
 }
 
-var_dump($studentList);
+var_dump($studentList); 

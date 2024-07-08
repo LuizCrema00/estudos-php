@@ -39,3 +39,14 @@ O método 'query' é usado para executar instrucoes SQL que retornam um conjunto
 O método 'fetchAll' é usado para recuperar todos os resultados de um objeto 'PDOStatement' em um array. Ele pode ser usado para obter os dados em diferentes formatos, como arrays associativos
 arrays numéricos, ou objetos.
 
+Fetch Modes:
+Ao tentar buscar dados do banco de dados, podemos informar como queremos que os métodos do PDO formatem essas dados. Os principais fetch modes ou fetch styles sao:
+PDO::FETCH_ASSOC: Retorna cada linha como um array associativo, onde a chave é o nome da coluna, e o valor é o valor da coluna em sí.
+
+PDO::FETCH_BOTH: (esse é o padrao), Retorna cada linha como um array com as chaves sendo tanto o índice da coluna (comecando com 0) quanto o nome da coluna, ou seja, os valores acabam 
+ficando duplicados nesse formato.
+
+PDO::FETCH_CLASS: Cada linha do resultado é retornado como uma instancia da classe especificada em outro parametro. A classe nao pode ter paramentros no construtor (ou o nome da coluna no banco de dados
+e o nome do atributo no objeto devem ser os mesmos)  e cada coluna terá seu valor atribuido a uma propriedade de mesmo nome no objeto criado.
+
+Para ver os demais modos de busca podemos consultar a documentacao: https://www.php.net/manual/en/pdostatement.fetch#refsect1-pdostatement.fetch-parameters
