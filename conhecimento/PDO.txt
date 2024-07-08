@@ -54,3 +54,42 @@ Para ver os demais modos de busca podemos consultar a documentacao: https://www.
 O método fetch retorna uma única linha, diferentemente do método fetchAll, qu retorna todas as linhas do SELECT. Em um cenario que pode ser interessante usar o fetch ao invés
 de fetchAll, seria para buscar uma linha por vez, poupando memória se tivermos muitas linhas sendo trazidas e tentarmos executar o fetchAll, iremos colocar todas as linhas em memória de uma vez só. 
 Isso pode trazer problemas. Utilizando o fetch dentro de um while, pode nos permitir buscar todos os resultados, mas colocando um de cada vez na memória.
+
+Prepared Statements:
+Prepared Statements (declaracoes preparadas) sao uma maneira segura e eficiente de executar instrucoes SQL com paramentros em PDO. Eles ajudam a prevenir ataques de SQL injection e melhoram o desempenho
+das consultas, especialemte quando a mesma instrucao SQL é executada múltiplas vezes com diferentes parametros.
+
+Beneficios dos prepared Statements
+1. Seguranca: Previne SQL Injection, pois os parametros sao tratados de forma segura pelo driver do banco de dados.
+2. Desempenho: Permite que o banco de dados prepare (analise, compile, e optimize) a instrucao SQL uuma vez e execute múltiplas vezes com diferentes valores de parametros.
+3. Clareza: O código é mais claro e mais facil de ler, pois os parametros sao vinculados a instrucao SQL de forma explicita.
+
+Resumo
+1. Preparar a instrucao: 'prepare($sql)'
+2. Vincular parametros: 'bindParam($posicao, $valor)' ou 'bindValue($posicao, $valor)'
+3. Executar a instrucao: 'execute([$parametros])'
+
+A diferenca principal entre 'bindValue' e 'bindParam' em PDO está na maneira como os valores sao vinculados aos placeholders na instrucao SQL.
+
+'bindValue':
+- Vincula um valor diretamente ao placeholder na instrucao SQL.
+- Momento da vinculacao: O valor é vinculado imediatamente quando 'bindValue' é chamado.
+- Uso típico: Quando voce tem um valor estático ou uma expressao que nao precisa mudar.
+
+$stmt = $pdo->prepare("INSERT INTO tabela (coluna1, coluna2) VALUES (:coluna1, :coluna2)");
+$stmt->bindValue(':coluna1', 'valor1'); // Valor 'valor1' é vinculado imediatamente
+$stmt->bindValue(':coluna2', 123);
+$stmt->execute();
+
+'bindParam':
+- Vincula uma variavel ao placeholder na instrucao SQL.
+- A variavel é vinculada por referencia, o que significa que o valor é avaliado no momento da execucao da instrucao SQL.
+- Uso típico: Quando voce espera que o valor da variavel possa mudar antes da execucao da instrucao SQL.
+
+$stmt = $pdo->prepare("INSERT INTO tabela (coluna1, coluna2) VALUES (:coluna1, :coluna2)");
+$valor1 = 'valor1';
+$valor2 = 123;
+$stmt->bindParam(':coluna1', $valor1); // Variável $valor1 é vinculada por referência
+$stmt->bindParam(':coluna2', $valor2);
+$valor1 = 'novoValor'; // Valor da variável pode mudar antes da execução
+$stmt->execute(); // Aqui, o valor atualizado de $valor1 é usado
