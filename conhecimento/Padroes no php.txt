@@ -1,0 +1,124 @@
+Padrao Entity:
+O padrao entity representa um objeto de domínio com uma identidade única. As entidades sao os principais objetos do dominio de um sistema, com propriedades
+e métodos que refletem as regras e comportamentos desse domínio. Cada instancia de uma entidade é identificavel de maneira única, geralmente por uma chave primaria.
+
+Caracteristicas
+1. Identidade única: Cada entidade possui uma identidade única que a distingue de outras instancias da mesma entidade.
+2. Encapsulamento de dados (propriedades) e métodos (comportamentos) relevantes ao dominio.
+3. Persistencia de Dados: Entidades geralmente mapeiam para tabelas de um banco de dados.
+
+Exemplo:
+class User
+{
+    private int $id;
+    private string $name;
+    private string $email;
+
+    public function __construct(int $id, string $name, string $email)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->email = $email;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+}
+
+Padrao Creation Method:
+O padrao Creation Method, também conhecido como Factory Method, é um padrao de design que define um método para criar objetos, permitindo que 
+subclasses alterem o tipo de objetos que serao criados. É útil para encapsular a lógica de criacao de objetos e promover a reutilizacao de código.
+
+Caracteristicas
+1. Encapsulamento de Lógica de Criacao: A lógica de criacao de objetos é encapsulada em um método separado.
+2. Flexibilidade: Facilita a mudanca do tipo de objetos criados sem alterar o código que usa esses objetos.
+3. Promove a Reutilizacao de Código: Reutiliza a lógica de criacao em diferentes partes do sistema.
+
+class UserFactory
+{
+    public static function create(int $id, string $name, string $email): User
+    {
+        return new User($id, $name, $email);
+    }
+}
+
+// Uso
+$user = UserFactory::create(1, 'Luiz Guilherme', 'luiz@example.com');
+
+
+Padrao Repository:
+O padrao repository é um padrao de design que abstrai a lógica de acesso a dados, proporciaonando uma interface que representa um conjunto de objetos de 
+um determinado tipo. Ele oculta os detalhes de como os dados sao persistidos e recuperados, permitindo que a lógica de negócios interaja com objetos de domínio sem conhecer
+a infraestrtura subjacente.
+
+Caracteristicas
+1. Abstracao do Acesso a Dados: Fornece uma camada de abstracao sobre os métodos de persistencia de dados.
+2. Colecoes de Objetos: Trata os objetos de domínio como uma colecao que pode ser consultada e manipulada.
+3. Separa a lógica de Negocios da persistencia de dados: Facilita a manutencao e evolucao do sistema ao isolar a lógica de negócios da lógica de persistencia.
+
+class UserRepository
+{
+    private PDO $pdo;
+
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    public function findById(int $id): ?User
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            return new User($data['id'], $data['name'], $data['email']);
+        }
+
+        return null;
+    }
+
+    public function save(User $user): void
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO users (name, email) VALUES (:name, :email)');
+        $stmt->bindParam(':name', $user->getName());
+        $stmt->bindParam(':email', $user->getEmail());
+        $stmt->execute();
+    }
+
+    // Outros métodos de consulta e manipulação
+}
+
+// Uso
+$pdo = new PDO('mysql:host=localhost;dbname=test', 'user', 'password');
+$userRepo = new UserRepository($pdo);
+
+$newUser = new User(0, 'Luiz Guilherme', 'luiz@example.com');
+$userRepo->save($newUser);
+
+$retrievedUser = $userRepo->findById(1);
+var_dump($retrievedUser);
+
