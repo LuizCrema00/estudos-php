@@ -1,10 +1,10 @@
 <?php
 use Alura\Pdo\Domain\Model\Student;
+use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
 
 require_once 'vendor/autoload.php';
 
-$caminhoBanco = __DIR__ . '/banco.sqlite'; //caminho absoluto
-$pdo = new PDO('sqlite:' . $caminhoBanco); //conexao com o banco de dados sqlite
+$pdo = ConnectionCreator::createConnection();
 
 $student = new Student(
     null, 
