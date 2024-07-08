@@ -50,3 +50,7 @@ PDO::FETCH_CLASS: Cada linha do resultado é retornado como uma instancia da cla
 e o nome do atributo no objeto devem ser os mesmos)  e cada coluna terá seu valor atribuido a uma propriedade de mesmo nome no objeto criado.
 
 Para ver os demais modos de busca podemos consultar a documentacao: https://www.php.net/manual/en/pdostatement.fetch#refsect1-pdostatement.fetch-parameters
+
+O método fetch retorna uma única linha, diferentemente do método fetchAll, qu retorna todas as linhas do SELECT. Em um cenario que pode ser interessante usar o fetch ao invés
+de fetchAll, seria para buscar uma linha por vez, poupando memória se tivermos muitas linhas sendo trazidas e tentarmos executar o fetchAll, iremos colocar todas as linhas em memória de uma vez só. 
+Isso pode trazer problemas. Utilizando o fetch dentro de um while, pode nos permitir buscar todos os resultados, mas colocando um de cada vez na memória.
