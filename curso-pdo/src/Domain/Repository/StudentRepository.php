@@ -7,7 +7,10 @@ use DateTimeInterface;
 
 interface StudentRepository
 {
+
     public function allStudents(): array;
+
+    public function studentsWithPhones(): array;
 
     public function studentsBirthAt(DateTimeInterface $bithDate): array;
 
