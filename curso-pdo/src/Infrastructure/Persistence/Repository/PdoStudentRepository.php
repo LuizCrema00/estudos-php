@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Pdo\Infrastructure\Repository;
+namespace Alura\Pdo\Infrastructure\Persistence\Repository;
 
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use PDO;
 use PDOStatement;
+use RuntimeException;
 
 class PdoStudentRepository implements StudentRepository
 {
