@@ -93,3 +93,68 @@ $stmt->bindParam(':coluna1', $valor1); // Variável $valor1 é vinculada por ref
 $stmt->bindParam(':coluna2', $valor2);
 $valor1 = 'novoValor'; // Valor da variável pode mudar antes da execução
 $stmt->execute(); // Aqui, o valor atualizado de $valor1 é usado
+
+Transacoes em PDO
+Trabalhar permitem agrupar uma série de operacoes de banco de dados em uma única unidade de trabalho, garantindo que todas as operacoes sejam concluídas com sucesso ou que nenhuma 
+delas seja aplicada
+
+Principais métodos para Transacoes:
+1. beginTransaction(): Inicia uma nova transacao.
+2. commit(): Confirma (commita) todas as operacoes realizadas durante a transacao.
+3. rollback: Desfaz todas as operacoes realizadas durante a transacao, retornando ao estado anterior.
+
+Exemplo do uso 
+<?php
+
+try {
+    // Conexão com o banco de dados
+    $pdo = new PDO('mysql:host=localhost;dbname=testdb', 'root', 'password');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Inicia a transação
+    $pdo->beginTransaction();
+
+    // Operações de banco de dados
+    $pdo->exec("INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')");
+    $pdo->exec("INSERT INTO profiles (user_id, bio) VALUES (LAST_INSERT_ID(), 'Bio do John')");
+
+    // Confirma a transação
+    $pdo->commit();
+
+    echo "Transação concluída com sucesso!";
+} catch (Exception $e) {
+    // Em caso de erro, desfaz a transação
+    $pdo->rollBack();
+    echo "Falha na transação: " . $e->getMessage();
+}
+
+Tratamento de Erros e Excecoes com PDO
+Erros em PDO podem ser tratados utilizando excecoes, o que permite capturar e gerenciar erros de forma mais eficaz.
+
+Configuracao de Modo de Erro
+É importante configurar o modo de erro do PDO para lancar excecoes. Isso pode ser feito utilizando o atributo 'PDO::ATTR_ERRMODE' com o valor 'PDO::ERRMODE_EXCEPTION'.
+
+<?php
+
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=testdb', 'root', 'password');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erro na conexão: " . $e->getMessage();
+}
+
+Captura de Excecoes
+Excecoes podem ser capturadas utilizando blocos 'try-catch'
+
+<?php
+
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=testdb', 'root', 'password');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Executa uma consulta que pode falhar
+    $pdo->exec("INVALID SQL QUERY");
+} catch (PDOException $e) {
+    echo "Erro na execução da consulta: " . $e->getMessage();
+}
+
