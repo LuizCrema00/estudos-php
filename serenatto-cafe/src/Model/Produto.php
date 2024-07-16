@@ -3,7 +3,7 @@
 
 class Produto
 {
-    private int $id;
+    private ?int $id;
 
     private string $tipo;
 
@@ -11,11 +11,11 @@ class Produto
 
     private string $descricao;
 
-    private string $imagem;
-
     private float $preco;
 
-    public function __construct(int $id, string $tipo, string $nome, string $descricao, string $imagem, float $preco)
+    private string $imagem;
+
+    public function __construct(?int $id, string $tipo, string $nome, string $descricao, float $preco, string $imagem = "logo-serenatto.png")
     {
         $this->id = $id;
         $this->tipo = $tipo;
