@@ -1,0 +1,36 @@
+No PHP, as varaiveis super globais sao arrays especiais que estao sempre disponiveis em todos os escopos, independente do contexto. 
+Duas das mais comumente usadas sao $_GET e $_POST, que sao usadas para coletar dados enviados pelo método HTTP GET e POST, respectivamente.
+
+$_GET 
+* Descricao: $_GET é uma super global que coleta dados enviados pelo método HTTP GET. Os dados sao anexados a URL na forma de pares chave-valor, e essa super global permite acessar
+esses dados.
+* Uso comum: Geralmente, os dados de um formulário que usa o método GET ou parametros de consulta em um URL sao acessados via $_GET.
+
+// URL: http://example.com/page.php?nome=Luiz&idade=25
+
+$nome = $_GET['nome']; // 'Luiz'
+$idade = $_GET['idade']; // '25'
+
+echo "Nome: $nome, Idade: $idade";
+
+Neste exemplo, os dados nome e idade sao passados na URL, e $_GET permite acessa-los no script page.php
+
+$_POST
+* Descricao: $_POST é uma super global que coleta dados enviados pelo método HTTP POST. Esse método é geralmente usado para enviar dados de um formulário de maneira mais segura,
+pois os dados nao sao exibidos na URL. É utilizado para enviar dados no corpo da solicitacao HTTP, adequado para envio de formulários com dados sensíveis.
+* Uso comum: É frequentemente usado para coletar dados de formulários, como credenciais de login, comentários, etc.
+
+<!-- Formulário HTML -->
+<form method="POST" action="processa_formulario.php">
+    Nome: <input type="text" name="nome">
+    Idade: <input type="text" name="idade">
+    <input type="submit" value="Enviar">
+</form>
+
+// processa_formulario.php
+$nome = $_POST['nome'];
+$idade = $_POST['idade'];
+
+echo "Nome: $nome, Idade: $idade";
+
+Neste exemplo, quando o formulário é enviado, os dados nome e idade sao enviados ao script processa_formulario.php e podem ser acessados via $_POST
