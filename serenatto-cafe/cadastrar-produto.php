@@ -12,7 +12,7 @@
                 $_POST['preco']
         );
 
-        if (isset($_FILES['imagem'])) {
+        if ($_FILES['imagem']['error'] == UPLOAD_ERR_OK) {     //$_FILES é uma variavel super global que trata de arquivos
             $produto->setImagem(uniqid() . $_FILES['imagem']['name']);
             move_uploaded_file($_FILES['imagem']['tmp_name'], $produto->getImagemDiretorio());
         }

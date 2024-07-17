@@ -9,7 +9,7 @@
    if (isset($_POST['editar'])) {
       $produto = new Produto($_POST['id'], $_POST['tipo'], $_POST['nome'], $_POST['descricao'], $_POST['preco']);
 
-      if (isset($_FILES['imagem'])) {
+      if ($_FILES['imagem']['error'] == UPLOAD_ERR_OK) {
         $produto->setImagem(uniqid() . $_FILES['imagem']['name']);
         move_uploaded_file($_FILES['imagem']['tmp_name'], $produto->getImagemDiretorio());
       }
