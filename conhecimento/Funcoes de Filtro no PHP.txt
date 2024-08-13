@@ -1,0 +1,46 @@
+As funcoes de filtro em PHP fazem parte da extensao 'filter', que fornece uma maneira segura e eficiente de validar e 
+sanitizar dados de várias fontes, como entrada de usuário, variaveis de ambiente, cookies, e mais. Elas sao essenciais para garantir
+que os dados processados pela aplicacao sejam seguros e estejam no formato esperado.
+
+Funcoes de filtro: Visao geral
+1. Validacao: As funcoes de validacao verificam se os dados atendem a determinados critérios. 
+Por exemplo, verificar se um valor é um inteiro, um endereco de email válido, uma URL, etc.
+
+2. Sanitizacao: As funcoes de sanitizacao limpam os dados, removendo ou escapando caracteres potencialmente perigosos. Por exemplo, remover tags HTML
+de uma string, escapar caracteres especiais, etc.
+
+EXEMPLO DE FUNCAO DE filtro 
+A funcao 'filter_input' do PHP é usada para obter uma váriavel externa (por exemplo, de entrada de formulário HTML) e opcionalmente filtra-la.
+Ela faz parte das funcoes de filtro de dados do PHP, que ajudam a validar e sanitizar dados de várias fontes.
+
+Sintaxe: filter_input(tipo_de_entrada, nome_da_variável, filtro, opções);
+
+Parametros
+1. tipo de entrada: O tipo de entrada a ser analisado. pode ser um dos seguintes:
+'INPUT_GET' - Variaveis HTTP GET
+'INPUT_POST' - Variaveis HTTP POST
+'INPUT_COOKIE' - Cookies HTTP
+'INPUT_SERVER' - Variaveis do servidor 
+'INPUT_ENV' - Variaveis de ambiente
+
+2. Nome da variavel: O nome da variavel que voce deseja obter e filtrar
+
+3. filtro(opcional): O filtro a ser aplicado. Pode ser um dos filtros constantes fornecidos pelo PHP, como 'FILTER_VALIDATE_INT'
+para avaliar um inteiro ou 'FILTER_SANITIZE_STRING' para sanitizar uma string. Se omitodo, o padrao é 'FILTER_DEFAULT' que é equivalente
+a 'FILTER_UNSAFE_RAW' (nao faz nenhuma filtragem).
+
+Exemplos
+1. Obter e validar um inteiro da entrada POST
+
+$idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT);
+if ($idade === false) {
+    echo "Idade inválida.";
+} else {
+    echo "Idade: $idade";
+}
+
+
+2. Obter e sanitizar uma string da entrada GET
+
+$nome = filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_STRING);
+echo "Nome: $nome";
