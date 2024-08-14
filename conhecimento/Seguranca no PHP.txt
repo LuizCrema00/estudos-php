@@ -1,0 +1,44 @@
+A seguranca é um aspecto crucial no desenvolvimento de aplicacoes PHP, pois um código mal escrito pode deixar o sistema vulneraavel a ataques como injecao de SQL,
+Cross-Site Scripting (XSS), e outros. Aqui estao algumas práticas essenciais para garantir a seguranca no desenvolvimento PHP.
+
+1. Prepared Statements
+
+Prepared Statements sao uma maneira segura de executar consultas SQL, protegendo contra ataques de injecao SQL. Ao usar prepared Statements, voce separa a lógica da consulta
+dos dados que sao passados para ela, evitando que entradas maliciosas alterem a consulta.
+
+Exemplo:
+
+// Conectar ao banco de dados
+$pdo = new PDO('mysql:host=localhost;dbname=meu_banco', 'usuario', 'senha');
+
+// Preparar a consulta
+$sql = 'SELECT * FROM usuarios WHERE email = :email';
+$stmt = $pdo->prepare($sql);
+
+// Vincular o parâmetro
+$stmt->bindParam(':email', $email);
+
+// Executar a consulta
+$email = 'exemplo@dominio.com';
+$stmt->execute();
+
+// Recuperar os resultados
+$result = $stmt->fetchAll();
+
+2. Sanitizacao e validacao
+Sanitizacao e validacao sao processos complementares para garantir que os dados de entrada sejam seguros e válidos.
+- Sanitizacao: Remove ou modifica caracteres indesejados.
+- Validacao: Verifica se os dados atendem a certos critérios.
+
+Exemplo de sanitizacao:
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+Exemplo de validacao:
+if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+    echo "Email inválido.";
+}
+
+3. Acesso Restrito aos arquivos e diretórios
+Configurar o servidor web para que apenasd os arquivos necessarios sejam acessiveis pelo público. Outras pastas, como aquelas que contem scripts de configuracao
+ou dados sensiveis, devem ser inacessiveis.
+
