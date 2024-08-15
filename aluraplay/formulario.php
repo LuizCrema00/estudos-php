@@ -36,7 +36,7 @@
                 <div class="formulario__campo">
                     <label class="campo__etiqueta" for="titulo">Titulo do vídeo</label>
                     <input name="titulo" 
-                           value="<?= $video['titulo']; ?>"
+                           value="<?= $video['title']; ?>"
                            class="campo__escrita" 
                            required 
                            placeholder="Neste campo, dê o nome do vídeo"
