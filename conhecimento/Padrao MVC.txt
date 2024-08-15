@@ -7,7 +7,7 @@ geralmente interagindo com um banco de dados.
 3. Controller(Controlador): Atua como um intermediário entre o Model e a View. Ele recebe entradas do usuário através da view, processa essas entradas (geralmente envolvendo o Model)
 e retorna a resposta apropriada para a view.
 
-Intuitio do MVC
+Intuito do MVC
 O principal objetivo do padrao MVC é:
 
 1. Separacao de Responsabilidade: Dividir a aplicacao em tres componentes distintos (Model, View, Controller) para que cada um tenha uma responsabilidade bem definida. Isso facilita a 
@@ -17,4 +17,128 @@ manutencao, testes e evolucao do sistemas.
 nas outras partes. Isso torna o código mais modular e fácil de entender.
 
 3. Promover o reuso de código: Componentes como Models e Controllers podem ser reutilizados em diferentes aprtes da aplicacao ou em outras aplicacoes, promovendo o reuso de código.
+
+Aplicacao do MVC no PHP
+No PHP, o padrao MVC pode ser implementado de várias maneiras. Aqui esta um exemplo simplificado de como o MV pode ser aplicado em uma aplicacao PHP
+
+Estrutura de diretórios
+/mvc-app
+    /controllers
+        VideoController.php
+    /models
+        Video.php
+        VideoRepository.php
+    /views
+        video-list.php
+    /public
+        index.php
+
+Model<?php
+
+namespace App\Models;
+
+class Video
+{
+    public function __construct(
+        private string $url,
+        private string $title,
+        private int $id = 0
+    ) {}
+
+    // Getters and setters...
+}
+
+Model VideoRepository
+<?php
+
+namespace App\Models;
+
+use PDO;
+
+class VideoRepository
+{
+    public function __construct(private PDO $pdo) {}
+
+    public function all(): array
+    {
+        $statement = $this->pdo->query('SELECT * FROM videos');
+        $videos = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        return array_map(function ($videoData) {
+            return new Video($videoData['url'], $videoData['title'], $videoData['id']);
+        }, $videos);
+    }
+
+    // Other methods like add, remove, update...
+}
+
+
+Controller
+<?php
+
+namespace App\Controllers;
+
+use App\Models\VideoRepository;
+
+class VideoController
+{
+    public function __construct(private VideoRepository $videoRepository) {}
+
+    public function list(): void
+    {
+        $videoList = $this->videoRepository->all();
+        require __DIR__ . '/../views/video-list.php';
+    }
+}
+
+
+View
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video List</title>
+</head>
+<body>
+    <h1>Video List</h1>
+    <ul>
+        <?php foreach ($videoList as $video): ?>
+            <li>
+                <iframe src="<?= htmlspecialchars($video->getUrl()) ?>" title="<?= htmlspecialchars($video->getTitle()) ?>"></iframe>
+                <p><?= htmlspecialchars($video->getTitle()) ?></p>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
+
+FrontController
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use App\Controllers\VideoController;
+use App\Models\VideoRepository;
+use PDO;
+
+// Create PDO instance
+$pdo = new PDO('mysql:host=localhost;dbname=mvc-app', 'root', 'password');
+$videoRepository = new VideoRepository($pdo);
+$controller = new VideoController($videoRepository);
+
+// Simple routing
+$path = $_SERVER['PATH_INFO'] ?? '/';
+if ($path === '/') {
+    $controller->list();
+} else {
+    http_response_code(404);
+    echo 'Page not found';
+}
+
+
+O padrao MV é uma abordagem poderosa para organizar o código de uma aplicacao, separando claramente as responsabilidades entre manipulacao de dados,
+a lógica de controle e a apresentacao. No PHP, ele pode ser implementado de forma simples, utilizando classes para cada componente do padrao, promovendo um código mais limpo
+modular e facil de manter.
+
+
+
 
