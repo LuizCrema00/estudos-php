@@ -1,0 +1,20 @@
+O padrao MVC (Model-View-Controller) é um padrao de arquitetura de software que separa a aplicacao em tres componentes inter-relacionados
+1. Model (Modelo): Representa os dados e a lógica de negócio da aplicacao. é responsavel por acessar e manipular os dados do sistema
+geralmente interagindo com um banco de dados.
+
+2. View (Visao): Representa a interface do usuário e a apresentacao dos dados. A view exibe as informacoes ao usuário e envia as entradas do usuário para o Controller.
+
+3. Controller(Controlador): Atua como um intermediário entre o Model e a View. Ele recebe entradas do usuário através da view, processa essas entradas (geralmente envolvendo o Model)
+e retorna a resposta apropriada para a view.
+
+Intuitio do MVC
+O principal objetivo do padrao MVC é:
+
+1. Separacao de Responsabilidade: Dividir a aplicacao em tres componentes distintos (Model, View, Controller) para que cada um tenha uma responsabilidade bem definida. Isso facilita a 
+manutencao, testes e evolucao do sistemas.
+
+2. Facilitar a Manutencao e Evolucao do sistema: Ao separar a lógica de negócio, a lógica da apresentacao e a lógica de controle, alteracoes em uma parte do sistema tem menos impacto
+nas outras partes. Isso torna o código mais modular e fácil de entender.
+
+3. Promover o reuso de código: Componentes como Models e Controllers podem ser reutilizados em diferentes aprtes da aplicacao ou em outras aplicacoes, promovendo o reuso de código.
+
