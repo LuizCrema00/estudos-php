@@ -39,6 +39,57 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 }
 
 3. Acesso Restrito aos arquivos e diretórios
-Configurar o servidor web para que apenasd os arquivos necessarios sejam acessiveis pelo público. Outras pastas, como aquelas que contem scripts de configuracao
+Configurar o servidor web para que apenas os arquivos necessarios sejam acessiveis pelo público. Outras pastas, como aquelas que contem scripts de configuracao
 ou dados sensiveis, devem ser inacessiveis.
+
+4. Hashing e Encriptacao
+Hashing e encriptacao sao duas tecnicas diferentes utilizadas para proteger dados, mas servem a propósitos distintos e funcionam de maneiras diferentes.
+
+Hashing:
+    1- Definicao: Hashing é o processo de transformar uma entrada (ou "mensagem") em uma saída de tamanho fixo
+    2- Propósito: O principal objetivo do hasing é verificar a integridade dos dados e armazenar senhas de maneira segura.
+    3- Funcao: As funcoes de hashing sao unidirecionais, ou seja, nao é possível reverter o hash para obter a entrada original.
+    4- Uso comum: Armazenamento seguro de senhas, verificacao de integridade de dados, assinaturas digitais.
+    5- Exemplos de algoritmos: MD5, bcrypt, argon2.
+
+Encriptacao:
+    1- Definicao: Encriptacao é o processo de transformar dados legíveis (plaintext) em dados ilegíveis (ciphertext) usando um algoritmo e uma chave de encriptacao.
+    Os dados podem ser revertidos para o estado original (decriptados) usando uma chave de decriptacao.
+    2- Propósito: O principal objetivo da decriptacao é proteger a confidencialidade dos dados, tornando-os ilegíveis para qualquer pessoa que nao possua a chave de decriptacao.
+    3- Funcao: A encriptacao é bidirecional, ou seja, os dados podem ser encriptados e depois decriptados de volta ao seu estado original.
+    4- Uso comum: Comunicacao segura(por exemplo, HTTPS, e-mails ecriptados), protecao de dados em Armazenamento
+    5- Exemplos de algoritmos: Simétricos: AES, DES, 3DES, Blowfish. Asimetricos: RSA, ECC(Criptografia de Cruva Elíptica).
+
+    Aplicacao Prática no PHP
+
+    Hashing de senhas
+    O PHP fornece funcoes embutidas para hashing de senhas, como 'password_hash()' e 'password_verify()'.
+
+    // Hashing uma senha
+    $password = "minhaSenhaSecreta";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Verificando a senha
+    if (password_verify($password, $hash)) {
+        echo "Senha correta!";
+    } else {
+        echo "Senha incorreta!";
+    }
+
+    Encriptacao 
+    PHP oferece funções para encriptação e decriptação usando a extensão openssl.
+
+    $data = "dados secretos";
+    $method = 'aes-256-cbc';
+    $key = 'chave-secreta';
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($method));
+
+    // Encriptando os dados
+    $encrypted = openssl_encrypt($data, $method, $key, 0, $iv);
+
+    // Decriptando os dados
+    $decrypted = openssl_decrypt($encrypted, $method, $key, 0, $iv);
+
+
+
 
