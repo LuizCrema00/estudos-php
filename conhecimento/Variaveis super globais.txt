@@ -1,4 +1,4 @@
-No PHP, as varaiveis super globais sao arrays especiais que estao sempre disponiveis em todos os escopos, independente do contexto. 
+No PHP, as variaveis super globais sao arrays especiais que estao sempre disponiveis em todos os escopos, independente do contexto. 
 Duas das mais comumente usadas sao $_GET e $_POST, que sao usadas para coletar dados enviados pelo método HTTP GET e POST, respectivamente.
 
 $_GET 
@@ -34,3 +34,51 @@ $idade = $_POST['idade'];
 echo "Nome: $nome, Idade: $idade";
 
 Neste exemplo, quando o formulário é enviado, os dados nome e idade sao enviados ao script processa_formulario.php e podem ser acessados via $_POST
+
+
+$_FILES
+
+A variavel superglobal $_FILES é um array associativo que contém informacoes sobre os arquivos enviados via formulários HTML com o método 'POST'. Ela é usada para gerenciar
+uploads de arquivos.
+
+Estrutura de $_FILES
+Quando voce faz um upload de arquivo através de um formulário HTML, a esdtrutura de $_FILES é a seguinte:
+
+$_FILES['nomeDoInput']['name']: O nome original do arquivo no computador do cliente.
+$_FILES['nomeDoInput']['type']: O MIME type do arquivo(por exemplo, 'image/jpeg').
+$_FILES['nomeDoInput']['tmp_name']: O caminho temporario onde o arquivo foi armazenado.
+$_FILES['nomeDoInput']['error']: Um código de erro associado ao upload do arquivo.
+$_FILES['nomeDoInput']['size']: O tamanho do arquivo em bytes.
+
+Exemplo de formulário de Upload:
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Selecione o arquivo:
+    <input type="file" name="arquivo">
+    <input type="submit" value="Upload">
+</form>
+
+Exemplo de manipulacao de upload
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verifica se houve algum erro durante o upload
+    if ($_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
+        $nomeTmp = $_FILES['arquivo']['tmp_name'];
+        $nomeOriginal = $_FILES['arquivo']['name'];
+
+        // Define o caminho final onde o arquivo será salvo
+        $caminhoFinal = __DIR__ . '/uploads/' . $nomeOriginal;
+
+        // Move o arquivo do local temporário para o destino final
+        if (move_uploaded_file($nomeTmp, $caminhoFinal)) {
+            echo 'Upload realizado com sucesso!';
+        } else {
+            echo 'Falha ao mover o arquivo.';
+        }
+    } else {
+        echo 'Erro no upload: ' . $_FILES['arquivo']['error'];
+    }
+}
+?>
+
+
+
