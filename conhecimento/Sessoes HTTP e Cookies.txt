@@ -1,0 +1,40 @@
+Sessoes HTTP e cookies sao componentes essenciais na construcao de aplicacoes web, especialmente quando se deseja manter o estado entre as interacoes 
+do usuário e o servidor.
+
+Sessoes HTTP:
+    - Permitem que um servidor mantenha informacoes sobre um usuário entre diferentes requisicoes HTTP. Como o HTTP é um protocolo sem estado, cada requisicao é
+    independente, e o servidor nao tem memória das requisicoes anteriores.
+    - Uma sessao associa dados específicos a um usuário enquanto ele interage com o site. Esses dados sao armazenados no servidor e sao acessados por meio de um
+    de um identificador de sessao, que é enviado ao cliente.
+
+Como as Seesoes Funcionam no PHP?
+
+1. Início da Sessao: No PHP, as sessoes sao iniciadas usando a funcao 'session_start()'. Isso gera um identificador de sessao único e o associa ao usuário.
+2. Armazenamento de dados: Dados específicos do usuário podem ser armazenados na váriavel superglobal '$_SESSION', que persiste enquanto a sessao estiver ativa.
+3. identificador de sessao: O identificador de sessao, (geralmente um cookie com o nome 'PHPSESSID') é enviado ao navegador do usuário, 
+que o envia de volta ao servidor em cada requisicao subsequente.
+4. Fim da Sessao: Sessoes podem ser destruídas usuando 'session_destroy()' para encerrar a sessao e liberar os dados armazenados.
+
+Exemplo de Sessao no PHP
+<?php
+// Inicia a sessão
+session_start();
+
+// Armazena informações na sessão
+$_SESSION['usuario'] = 'João';
+$_SESSION['email'] = 'joao@example.com';
+
+// Acessa informações da sessão
+echo 'Usuário: ' . $_SESSION['usuario'];
+echo 'Email: ' . $_SESSION['email'];
+
+// Destroi a sessão
+session_destroy();
+?>
+
+
+Cookies 
+O que sao Cookies?
+    - Cookies sao pequenos pedacos de dados armazenados no navegador do usuário e enviados ao servidor com cada requisicao HTTP. Eles sao usados para armazenar informacoes persistentes,
+    como preferencias do usuário, sessao, ou dados de autenticacao.
+
